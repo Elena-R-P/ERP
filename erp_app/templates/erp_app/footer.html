@@ -1,0 +1,28 @@
+{% load static %}
+<div id="footer">
+  <div>
+    <ul class="navigation">
+      <li class="active">
+        <a href="{% url 'erp_app:index' %}">Home</a>
+      </li>
+      <li>
+        <a href="{% url 'erp_app:drivers_list' %}">DRIVERS</a>
+      </li>
+      <li>
+        <a href="{% url 'erp_app:trucks_list' %}">TRUCKS</a>
+      </li>
+      <li>
+        <a href="{% url 'erp_app:trailers_list' %}">TRAILERS</a>
+      </li>
+      <li>
+        <a href="{% url 'erp_app:loads_list' %}">LOADS</a>
+      </li>
+      <li>
+        <a href="{% url 'erp_app:payroll' %}">PAYROLL</a>
+      </li>
+      <li>
+        <a href="{% url 'erp_app:contacts_list' %}">Contact</a>
+      </li>
+    </ul>
+  </div>
+</div>
