@@ -12,4 +12,5 @@ urlpatterns = [
     path("loads/", views.loads_list, name="loads_list"),
     path("payroll/", views.payroll, name="payroll"),
     path("contacts/", views.contacts_list, name="contacts_list"),
+    path("driver_add/", views.driver_add, name="driver_add"),
 ]

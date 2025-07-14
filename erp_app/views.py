@@ -15,6 +15,10 @@ def drivers_list(request):
     return render(request, "erp_app/drivers.html")
 
 
+def driver_add(request):
+    return render(request, "erp_app/driver_add.html")
+
+
 # Drivers list view
 # class DriverListView(View):
 #    def get(self, request):
@@ -22,7 +26,7 @@ def drivers_list(request):
 # Make a database call
 # Load all the driver's records, turn them into objects
 # Get a list of those objects
-# Pass entire list to the HTML template
+# Pass entire list to the HTML template:w
 
 
 def trucks_list(request):
