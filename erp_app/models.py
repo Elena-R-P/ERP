@@ -11,7 +11,7 @@ class Driver(models.Model):
     date_of_birth = models.DateField(max_length=45)
     license_number = models.CharField(max_length=45)
     license_state = USStateField()
-    license_exp_date = models.DateField(max_length=45)
+    license_exp_date = models.DateField()
     driver_start_date = models.DateField(
         default=date(2025, 1, 1), verbose_name="Hire date"
     )
