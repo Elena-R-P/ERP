@@ -15,14 +15,8 @@
     <div id="background">
       <div id="page">
         <div id="header">
-          <div id="logo">
-            <a href="erp_app/index.html">
-              <img src="{% static 'img/truck.PNG' %}"
-                   alt="LOGO"
-                   height="120"
-                   width="200">
-            </a>
-          </div>
+          {% block logo %}
+          {% endblock logo %}
           {% block nav %}
           {% endblock nav %}
         </div>

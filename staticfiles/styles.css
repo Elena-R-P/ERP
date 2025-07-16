@@ -447,6 +447,16 @@ th {
   text-align: center!important;
 }
 
+/*--------ADD FORMS------*/
+#container-form{
+  margin: 100px!important;
+  
+  color: #594334;
+
+}
+
+
+
 /*------------------------------ ALTERNATIVE NAV BAR 
 #horizontal-nav ul {
 	display: flex;
