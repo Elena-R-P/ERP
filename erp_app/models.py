@@ -8,7 +8,7 @@ from localflavor.us.models import USStateField
 class Driver(models.Model):
     first_name = models.CharField(max_length=45)
     last_name = models.CharField(max_length=45)
-    date_of_birth = models.DateField(max_length=45)
+    date_of_birth = models.DateField()
     license_number = models.CharField(max_length=45)
     license_state = USStateField()
     license_exp_date = models.DateField()
@@ -55,4 +55,16 @@ class Load(models.Model):
     location_delivery = models.CharField(max_length=45)
     pickup_date = models.DateField()
     delivery_date = models.DateField(null=True, blank=True)
+    total_cost = models.IntegerField()
     load_status_delivered = models.BooleanField(default=False, blank=True)
+    driver = models.ForeignKey("Driver", on_delete=models.CASCADE)
+    # If driver deleted do not delete the load
+    # driver = models.ForeignKey("Driver", on_delete=models.SET_NULL, null=True)
+
+
+class Payroll(models.Model):
+    payroll_date = models.DateField()
+    total_pay = models.IntegerField()
+    driver = models.ForeignKey("Driver", on_delete=models.CASCADE)
+    # If driver deleted do not delete the payrol
+    # driver = models.ForeignKey("Driver", on_delete=models.SET_NULL, null=True)
