@@ -1,13 +1,17 @@
 from datetime import date
 from django.db import models
 from localflavor.us.models import USStateField
+from django.core.validators import MinLengthValidator
 
 # Create your models here.
 
 
 class Driver(models.Model):
     first_name = models.CharField(max_length=45)
-    last_name = models.CharField(max_length=45)
+    last_name = models.CharField(
+        max_length=45,
+        validators=[MinLengthValidator(2, "Must be greater than 1 character")],
+    )
     date_of_birth = models.DateField()
     license_number = models.CharField(max_length=45)
     license_state = USStateField()
@@ -19,6 +23,10 @@ class Driver(models.Model):
         null=True, blank=True, verbose_name="Termination date"
     )
     driver_active = models.BooleanField(default=False, blank=True)
+
+    # Shows up in the admin list
+    def __str__(self):
+        return self.first_name
 
 
 class Truck(models.Model):
@@ -34,6 +42,10 @@ class Truck(models.Model):
     )
     truck_active = models.BooleanField(default=False, blank=True)
 
+    # Shows up in the admin list
+    def __str__(self):
+        return self.truck_number
+
 
 class Trailer(models.Model):
     trailer_number = models.CharField(max_length=45)
@@ -48,6 +60,10 @@ class Trailer(models.Model):
     )
     truck_active = models.BooleanField(default=False, blank=True)
 
+    # Shows up in the admin list
+    def __str__(self):
+        return self.trailer_number
+
 
 class Load(models.Model):
     load_number = models.CharField(max_length=45)
@@ -60,6 +76,10 @@ class Load(models.Model):
     driver = models.ForeignKey("Driver", on_delete=models.CASCADE)
     # If driver deleted do not delete the load
     # driver = models.ForeignKey("Driver", on_delete=models.SET_NULL, null=True)
+
+    # Shows up in the admin list
+    def __str__(self):
+        return self.load_number
 
 
 class Payroll(models.Model):
