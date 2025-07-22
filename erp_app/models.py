@@ -8,10 +8,7 @@ from django.core.validators import MinLengthValidator
 
 class Driver(models.Model):
     first_name = models.CharField(max_length=45)
-    last_name = models.CharField(
-        max_length=45,
-        validators=[MinLengthValidator(2, "Must be greater than 1 character")],
-    )
+    last_name = models.CharField(max_length=45)
     date_of_birth = models.DateField()
     license_number = models.CharField(max_length=45)
     license_state = USStateField()
@@ -84,7 +81,13 @@ class Load(models.Model):
 
 class Payroll(models.Model):
     payroll_date = models.DateField()
-    total_pay = models.IntegerField()
+    # total_pay = models.IntegerField() - will be calculated
     driver = models.ForeignKey("Driver", on_delete=models.CASCADE)
+
+    # add related name, connect with
     # If driver deleted do not delete the payrol
     # driver = models.ForeignKey("Driver", on_delete=models.SET_NULL, null=True)
+    @property
+    def total_pay(self):
+        total_cost = 1000
+        return total_cost

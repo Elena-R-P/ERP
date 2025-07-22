@@ -5,7 +5,6 @@
   <head>
     <meta charset="UTF-8">
     <title>ERP Trucking Inc</title>
-    <!--<link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css">-->
     <link rel="stylesheet" href="{% static 'styles.css' %}" type="text/css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"
           rel="stylesheet"
@@ -24,33 +23,47 @@
                    width="200">
             </a>
           </div>
-          {% include "erp_app/nav_drivers.html" %}
+          {% include "erp_app/nav_trucks.html" %}
         </div>
         <div id="contents">
           <div>
-            <button type="button" class="btn btn-light mb-3">ADD DRIVER</button>
+            <button type="button" class="btn btn-light mb-3">
+              <a href="{% url 'erp_app:truck_create' %}">ADD TRUCK</a>
+            </button>
           </div>
           <div>
             <div class="table-responsive">
               <table class="table table-striped table-bordered table-hover">
                 <thread>
                 <tr>
-                  <th scope="col">First Name</th>
-                  <th scope="col">Last Name</th>
-                  <th scope="col">Date of birth</th>
+                  <th scope="col">Unit Numer</th>
+                  <th scope="col">VIN#</th>
+                  <th scope="col">Year</th>
                   <th scope="col">License Number</th>
                   <th scope="col">State</th>
                   <th scope="col">Expiration Date</th>
                   <th scope="col">Hire Date</th>
                   <th scope="col">Termination Date</th>
+                  <th scope="col">Options</th>
                 </tr>
                 </thread>
-                <tbody>
-                  <tr>
-                    <th scope="row"></th>
-                    <td></td>
-                  </tr>
-                </tbody>
+                {% for truck in truck_list %}
+                  <tbody>
+                    <tr>
+                      <td scope="col">{{ truck.truck_number }}</td>
+                      <td scope="col">{{ truck.truck_vin_number }}</td>
+                      <td scope="col">{{ truck.truck_year }}</td>
+                      <td scope="col">{{ truck.truck_make }}</td>
+                      <td scope="col">{{ truck.truck_plate_number }}</td>
+                      <td scope="col">{{ truck.truck_plate_state }}</td>
+                      <td scope="col">{{ truck.truck_start_date }}</td>
+                      <td scope="col">{{ truck.truck_end_date }}</td>
+                      <td scope="col">
+                        <a href={% url 'erp_app:truck_update' truck.id %}>Update</a> <a href={% url 'erp_app:truck_delete' truck.id %}>Delete</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                {% endfor %}
               </table>
             </div>
           </div>

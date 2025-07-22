@@ -23,32 +23,45 @@
                    width="200">
             </a>
           </div>
-          {% include "erp_app/nav_trailers.html" %}
+          {% include "erp_app/nav_loads.html" %}
         </div>
         <div id="contents">
           <div>
-            <button type="button" class="btn btn-light mb-3">ADD TRAILER</button>
+            <button type="button" class="btn btn-light mb-3">
+              <a href="{% url 'erp_app:load_create' %}">ADD LOAD</a>
+            </button>
           </div>
           <div>
             <div class="table-responsive">
               <table class="table table-striped table-bordered table-hover">
                 <thread>
                 <tr>
-                  <th scope="col">Unit Number</th>
-                  <th scope="col">VIN#</th>
-                  <th scope="col">Year</th>
-                  <th scope="col">Make</th>
-                  <th scope="col">Plate #</th>
-                  <th scope="col">Start Date</th>
-                  <th scope="col">Termination Date</th>
+                  <th scope="col">Load#</th>
+                  <th scope="col">Pickup Date</th>
+                  <th scope="col">Pickup Location</th>
+                  <th scope="col">Delivery Date</th>
+                  <th scope="col">Delivery Location</th>
+                  <th scope="col">Total Cost</th>
+                  <th scope="col">Driver Name</th>
+                  <th scope="col">Options</th>
                 </tr>
                 </thread>
-                <tbody>
-                  <tr>
-                    <th scope="row"></th>
-                    <td></td>
-                  </tr>
-                </tbody>
+                {% for load in load_list %}
+                  <tbody>
+                    <tr>
+                      <td scope="col">{{ load.load_number }}</td>
+                      <td scope="col">{{ load.location_pickup }}</td>
+                      <td scope="col">{{ load.location_delivery }}</td>
+                      <td scope="col">{{ load.pickup_date }}</td>
+                      <td scope="col">{{ load.delivery_date }}</td>
+                      <td scope="col">${{ load.total_cost }}</td>
+                      <td scope="col">{{ load.driver }}</td>
+                      <td scope="col">
+                        <a href={% url 'erp_app:load_update' load.id %}>Update</a> <a href={% url 'erp_app:load_delete' load.id %}>Delete</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                {% endfor %}
               </table>
             </div>
           </div>

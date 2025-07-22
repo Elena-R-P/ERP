@@ -36,22 +36,22 @@
           </div>
           <div id="sidebar">
             <div class="section">
-              <a href="{% url 'erp_app:driver_add' %}">
+              <a href="{% url 'erp_app:driver_create' %}">
                 <img src="{% static 'img/add_driver.png' %}" alt="Img">
               </a>
             </div>
             <div class="section">
-              <a href="add_truck.html">
+              <a href="{% url 'erp_app:truck_create' %}">
                 <img src="{% static 'img/add_truck.png' %}" alt="Img">
               </a>
             </div>
             <div class="section">
-              <a href="add_trailer.html">
+              <a href="{% url 'erp_app:trailer_create' %}">
                 <img src="{% static 'img/add_trailer.png' %}" alt="Img">
               </a>
             </div>
             <div class="section">
-              <a href="add_load.html">
+              <a href="{% url 'erp_app:load_create' %}">
                 <img src="{% static 'img/add_load.png' %}" alt="Img">
               </a>
             </div>
