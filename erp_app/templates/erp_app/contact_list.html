@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>ERP Trucking Inc</title>
+    <link rel="stylesheet" href="{% static 'styles1.css' %}" type="text/css">
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="navigation">
+        <ul>
+          <li>
+            <a href="{% url 'erp_app:index' %}">HOME</a>
+          </li>
+          <li>
+            <a href="{% url 'erp_app:driver_list' %}">DRIVERS</a>
+          </li>
+          <li>
+            <a href="{% url 'erp_app:truck_list' %}">TRUCKS</a>
+          </li>
+          <li>
+            <a href="{% url 'erp_app:trailer_list' %}">TRAILERS</a>
+          </li>
+          <li>
+            <a href="{% url 'erp_app:load_list' %}">LOADS</a>
+          </li>
+          <li>
+            <a href="{% url 'erp_app:payroll_list' %}">PAYROLL</a>
+          </li>
+          <li class="selected">
+            <a href="{% url 'erp_app:contact_list' %}">CONTACTS</a>
+          </li>
+        </ul>
+      </div>
+      <div id="main_content">
+        <div class="subcontents">
+          <button class="button">CREATE PAYROLL</button>
+        </div>
+        <div class="subcontents">
+          <button>CHOOSE DRIVER</button>
+        </div>
+        <div id="main_spreadsheet">
+          <table>
+            <tr>
+              <th>Company</th>
+              <th>Contact</th>
+              <th>Country</th>
+            </tr>
+            <tr>
+              <td>Alfreds Futterkiste</td>
+              <td>Maria Anders</td>
+              <td>Germany</td>
+            </tr>
+            <tr>
+              <td>Centro comercial Moctezuma</td>
+              <td>Francisco Chang</td>
+              <td>Mexico</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

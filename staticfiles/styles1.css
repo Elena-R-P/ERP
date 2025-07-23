@@ -1,0 +1,101 @@
+{% load static %}
+*{
+  margin: 0px;
+  padding: 0px;
+}
+
+#wrapper{
+  background: #9ad3fc url(./img/bg-pattern.jpg) repeat left bottom;
+  overflow: hidden;
+  min-height: 1318px;
+}
+
+#navigation{
+  min-height: 50px;
+  width: 850px;
+  display: inline-flex;
+  margin-top: 25px;
+  margin-left: 25px;
+}
+
+ul{
+  list-style-type: none;
+}
+li {
+  width: 115px;
+  height: 34px;
+  float: left;
+  text-align: center;
+  padding-top: 15px;
+  background-image: url(./img/bg-navigation.png);
+  border-radius: 2px;
+}
+li a{
+  display: block;
+  text-decoration:none;
+  color: #f3f3f3;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+  font-size: 15px;
+}
+li:hover{
+  background-color: #efd290;
+}
+li.selected{
+  background-image: url(./img/bg-menu.png);
+}
+
+#main_content{
+  min-height:400px;
+  width: 800px;
+  display: inline-block;
+  padding: 15px;
+}
+
+.subcontents{
+  min-height:30px;
+  width: 150px;
+  margin-right:10px;
+  display: inline-block;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.button {
+  padding: 10px;
+  background-color:yellow;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+#main_spreadsheet{
+  min-height: 120px;
+  width: 800px;
+  margin-left: 15px;
+}
+
+table, th, td {
+  border: 1px solid white;
+  border-collapse: collapse;
+  background-color: #d1c4ba;
+}
+
+th, td {
+  text-align: center;
+  padding: 5px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 12px;
+  color: #4c2a1d;
+}
+
+th {
+  font-weight: bold;
+}
+
+td a {
+  color: inherit;
+}
+
+
+
