@@ -3,11 +3,15 @@
   margin: 0px;
   padding: 0px;
 }
+body{
+
+  background: #9ad3fc url(./img/bg-pattern.jpg) repeat left bottom;
+}
 
 #wrapper{
-  background: #9ad3fc url(./img/bg-pattern.jpg) repeat left bottom;
   overflow: hidden;
   min-height: 1318px;
+  width: 900px;
 }
 
 #navigation{

@@ -1,3 +1,5 @@
+#
+# import {{{1
 from django.shortcuts import redirect, render
 from django.views import View
 from django.http import HttpResponse
@@ -7,7 +9,9 @@ from django.template.loader import render_to_string
 from django.shortcuts import get_object_or_404
 
 from .models import Driver, Truck, Trailer, Load, Payroll
-from .forms import DriverForm, TruckForm, TrailerForm, LoadForm
+from .forms import DriverForm, PayrollForm, TruckForm, TrailerForm, LoadForm
+
+# }}}1
 
 
 # Create your views here.
@@ -16,15 +20,18 @@ def index(request):
     return render(request, "erp_app/index.html")
 
 
-# Drivers
-# Render drivers page
+# Driver {{{1
+# DriverView {{{2
 class DriverView(View):
+    """Render drivers page"""
+
     def get(self, request):
         dl = Driver.objects.all()
         ctx = {"driver_list": dl}
         return render(request, "erp_app/driver_list.html", ctx)
 
 
+# DriverView {{{2
 class DriverCreate(View):
     template = "erp_app/driver_form.html"
     success_url = reverse_lazy("erp_app:driver_list")
@@ -192,8 +199,14 @@ class LoadView(View):
 
 class LoadCreate(CreateView):
     model = Load
-    fields = "__all__"
+    form_class = LoadForm
     success_url = reverse_lazy("erp_app:load_list")
+
+    def get_form_kwargs(self):
+        """Return the keyword arguments for instantiating the form."""
+        kwargs = super().get_form_kwargs()
+        kwargs["driver_id"] = self.request.GET.get("driver")
+        return kwargs
 
 
 class LoadUpdate(UpdateView):
@@ -206,6 +219,25 @@ class LoadDelete(DeleteView):
     model = Load
     fields = "__all__"
     success_url = reverse_lazy("erp_app:load_list")
+
+
+class PayrollCreate(CreateView):
+    model = Payroll
+    form_class = PayrollForm
+    success_url = reverse_lazy("erp_app:load_list")
+
+    def get_form_kwargs(self):
+        """Return the keyword arguments for instantiating the form."""
+        kwargs = super().get_form_kwargs()
+        kwargs["driver_id"] = self.request.GET.get("driver")
+        return kwargs
+
+    def form_valid(self, form):
+        self.object = form.save()
+        for load in form.cleaned_data["loads"]:
+            load.payroll = self.object
+            load.save(update_fields=["payroll"])
+        return redirect(self.success_url)
 
 
 def payroll_list(request):

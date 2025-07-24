@@ -1,42 +1,67 @@
 {% load static %}
 <!DOCTYPE html>
-<!-- Website template by freewebsitetemplates.com -->
 <html>
   <head>
     <meta charset="UTF-8">
     <title>ERP Trucking Inc</title>
-    <link rel="stylesheet" href="{% static 'styles.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'styles1.css' %}" type="text/css">
   </head>
   <body>
-    <div id="background">
-      <div id="page">
-        <div id="header">
-          <div id="logo">
-            <a href="erp_app/index.html">
-              <img src="{% static 'img/truck.PNG' %}"
-                   alt="LOGO"
-                   height="120"
-                   width="200">
-            </a>
-          </div>
-          {% include "erp_app/nav_payroll.html" %}
+    <div id="wrapper">
+      <div id="navigation">
+        <ul>
+          <li>
+            <a href="{% url 'erp_app:index' %}">HOME</a>
+          </li>
+          <li>
+            <a href="{% url 'erp_app:driver_list' %}">DRIVERS</a>
+          </li>
+          <li>
+            <a href="{% url 'erp_app:truck_list' %}">TRUCKS</a>
+          </li>
+          <li>
+            <a href="{% url 'erp_app:trailer_list' %}">TRAILERS</a>
+          </li>
+          <li>
+            <a href="{% url 'erp_app:load_list' %}">LOADS</a>
+          </li>
+          <li class="selected">
+            <a href="{% url 'erp_app:payroll_list' %}">PAYROLL</a>
+          </li>
+          <li>
+            <a href="{% url 'erp_app:contact_list' %}">CONTACTS</a>
+          </li>
+        </ul>
+      </div>
+      <div id="main_content">
+        <div class="subcontents">
+          <a href="{% url 'erp_app:truck_create' %}">CREATE PAYROLL</a>
         </div>
-        <div id="contents">
-          <img src="{% static 'img/payroll_screen.png' %}"
-               style="width: 865px;
-                      height: 650px"
-               alt="Img">
+        <div id="main_spreadsheet">
+          <table style="width:100%">
+            <thread>
+            <tr>
+              <th style="width: 20%">Payroll Date</th>
+              <th>Driver Name</th>
+              <th>Total Amount</th>
+              <th>Options</th>
+            </tr>
+            </thread>
+            {% for truck in truck_list %}
+              <tbody>
+                <tr>
+                  <td>{{ truck.truck_number }}</td>
+                  <td>{{ truck.truck_vin_number }}</td>
+                  <td>{{ truck.truck_year }}</td>
+                  <td>
+                    <a href={% url 'erp_app:truck_update' truck.id %}>Update</a> <a href={% url 'erp_app:truck_delete' truck.id %}>Delete</a>
+                  </td>
+                </tr>
+              </tbody>
+            {% endfor %}
+          </table>
         </div>
       </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cD fL"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-            integrity="sha384I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa 9r"
-            crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
-            integrity="sha256kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8="
-            crossorigin="anonymous"></script>
   </body>
 </html>

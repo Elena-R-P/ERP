@@ -70,7 +70,7 @@
                   <td>{{ driver.driver_start_date }}</td>
                   <td>{{ driver.driver_end_date }}</td>
                   <td>
-                    <a href={% url 'erp_app:driver_update' driver.id %}>Update</a> <a href={% url 'erp_app:driver_delete' driver.id %}>Delete</a>
+                    <a href={% url 'erp_app:driver_update' driver.id %}>Update</a> <a href={% url 'erp_app:driver_delete' driver.id %}>Delete</a> <a href="{% url 'erp_app:load_create' %}?driver={{ driver.id }}">Load</a>
                   </td>
                 </tr>
               </tbody>

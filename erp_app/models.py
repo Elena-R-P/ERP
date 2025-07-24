@@ -71,6 +71,9 @@ class Load(models.Model):
     total_cost = models.IntegerField()
     load_status_delivered = models.BooleanField(default=False, blank=True)
     driver = models.ForeignKey("Driver", on_delete=models.CASCADE)
+    payroll = models.ForeignKey(
+        "Payroll", on_delete=models.CASCADE, null=True, blank=True
+    )
     # If driver deleted do not delete the load
     # driver = models.ForeignKey("Driver", on_delete=models.SET_NULL, null=True)
 

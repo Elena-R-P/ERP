@@ -1,3 +1,4 @@
+from django import forms
 from django.forms import ModelForm
 from .models import Driver, Truck, Trailer, Load, Payroll
 
@@ -26,3 +27,26 @@ class LoadForm(ModelForm):
         model = Load
         fields = "__all__"
 
+    def __init__(self, *args, **kwargs):
+        driver_id = kwargs.pop("driver_id", None)
+        super().__init__(*args, **kwargs)
+        self.fields["driver"].initial = Driver.objects.get(id=driver_id)
+
+
+class PayrollForm(ModelForm):
+    loads = forms.ModelMultipleChoiceField(
+        queryset=Load.objects.none(),
+        widget=forms.SelectMultiple,
+        label="Select Loads",
+    )
+
+    class Meta:
+        model = Payroll
+        fields = "__all__"
+
+    def __init__(self, *args, **kwargs):
+        driver_id = kwargs.pop("driver_id", None)
+        super().__init__(*args, **kwargs)
+        driver = Driver.objects.get(id=driver_id)
+        self.fields["driver"].initial = driver
+        self.fields["loads"].queryset = Load.objects.filter(driver=driver)
