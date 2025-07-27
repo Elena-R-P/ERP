@@ -101,13 +101,20 @@ td a {
   color: inherit;
 }
 
-
+#main_forms {
+  margin-top: 30px;
+  margin-left: 50px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
+}
 
 input[type="submit"] {
-  background-color: blue;
-  color: white;
+  margin-top: 10px;
+  color: #4c2a1d;
   padding: 10px 20px;
   border: none;
   cursor: pointer;
+  border: 1px solid #4c2a1d;
+  border-radius: 4px;
 }
- 
+

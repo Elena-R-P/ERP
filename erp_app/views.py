@@ -31,7 +31,6 @@ class DriverView(View):
         return render(request, "erp_app/driver_list.html", ctx)
 
 
-# DriverView {{{2
 class DriverCreate(View):
     template = "erp_app/driver_form.html"
     success_url = reverse_lazy("erp_app:driver_list")

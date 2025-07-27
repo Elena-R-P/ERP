@@ -7,19 +7,21 @@ from django.core.validators import MinLengthValidator
 
 
 class Driver(models.Model):
-    first_name = models.CharField(max_length=45)
-    last_name = models.CharField(max_length=45)
-    date_of_birth = models.DateField()
-    license_number = models.CharField(max_length=45)
-    license_state = USStateField()
-    license_exp_date = models.DateField()
+    first_name = models.CharField(max_length=45, verbose_name="First Name")
+    last_name = models.CharField(max_length=45, verbose_name="Last Name")
+    date_of_birth = models.DateField(verbose_name="Date of birth")
+    license_number = models.CharField(max_length=45, verbose_name="CDL #")
+    license_state = USStateField(verbose_name="State")
+    license_exp_date = models.DateField(verbose_name="CDL exp date")
     driver_start_date = models.DateField(
         default=date(2025, 1, 1), verbose_name="Hire date"
     )
     driver_end_date = models.DateField(
         null=True, blank=True, verbose_name="Termination date"
     )
-    driver_active = models.BooleanField(default=False, blank=True)
+    driver_active = models.BooleanField(
+        default=False, blank=True, verbose_name="Driver active"
+    )
 
     # Shows up in the admin list
     def __str__(self):
