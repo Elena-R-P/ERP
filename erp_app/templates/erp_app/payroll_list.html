@@ -35,26 +35,28 @@
       </div>
       <div id="main_content">
         <div class="subcontents">
-          <a href="{% url 'erp_app:truck_create' %}">CREATE PAYROLL</a>
+          <a href="{% url 'erp_app:payroll_create' %}">CREATE PAYROLL</a>
         </div>
         <div id="main_spreadsheet">
           <table style="width:100%">
             <thread>
             <tr>
-              <th style="width: 20%">Payroll Date</th>
+              <th style="width: 15%">Payroll Date</th>
               <th>Driver Name</th>
-              <th>Total Amount</th>
+              <th style="width: 5%">%</th>
+              <th>Total Pay</th>
               <th>Options</th>
             </tr>
             </thread>
-            {% for truck in truck_list %}
+            {% for payroll in payroll_list %}
               <tbody>
                 <tr>
-                  <td>{{ truck.truck_number }}</td>
-                  <td>{{ truck.truck_vin_number }}</td>
-                  <td>{{ truck.truck_year }}</td>
+                  <td>{{ payroll.payroll_date }}</td>
+                  <td>{{ payroll.driver }}</td>
+                  <td>{{ payroll.discount_percentage }}</td>
+                  <td>{{ payroll.total_pay }}</td>
                   <td>
-                    <a href={% url 'erp_app:truck_update' truck.id %}>Update</a> <a href={% url 'erp_app:truck_delete' truck.id %}>Delete</a>
+                    <a href={% url 'erp_app:payroll_update' payroll.id %}>Update</a> <a href={% url 'erp_app:payroll_delete' payroll.id %}>Delete</a>
                   </td>
                 </tr>
               </tbody>
