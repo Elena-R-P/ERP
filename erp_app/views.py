@@ -7,9 +7,10 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.template.loader import render_to_string
 from django.shortcuts import get_object_or_404
+from django.db.models import Sum
 
-from .models import Driver, Truck, Trailer, Load, Payroll
-from .forms import DriverForm, PayrollForm, TruckForm, TrailerForm, LoadForm
+from .models import Driver, Truck, Trailer, Load
+from .forms import DriverForm, TruckForm, TrailerForm, LoadForm
 
 # }}}1
 
@@ -20,7 +21,6 @@ def index(request):
     return render(request, "erp_app/index.html")
 
 
-# Driver {{{1
 # DriverView {{{2
 class DriverView(View):
     """Render drivers page"""
@@ -91,7 +91,10 @@ class DriverDelete(View):
         return redirect(self.success_url)
 
 
-# Trucks
+# }}} 2
+
+
+# Trucks {{{ 3
 # Render trucks page
 class TruckView(View):
     def get(self, request):
@@ -187,6 +190,9 @@ class TrailerDelete(DeleteView):
     success_url = reverse_lazy("erp_app:trailer_list")
 
 
+# }}} 3
+
+
 # Loads
 # Render loads page
 class LoadView(View):
@@ -220,13 +226,37 @@ class LoadDelete(DeleteView):
     success_url = reverse_lazy("erp_app:load_list")
 
 
-class PayrollCreate(CreateView):
+# Payroll Calculations
+def calculate_driver_payrol(request, driver_id, year, month):
+    driver = Driver.objects.get(id=driver_id)
+
+    # Filter loads by driver and month/year
+    driver_loads = Load.objects.filter(
+        driver=driver, delivery_date__year=year, delivery_date__month=month
+    )
+
+    # Calculate total pay for the specific period
+    total_pay = driver_loads.aggregate(Sum("total_cost"))["total_cost__sum"]
+
+    ctx = {"driver": driver, "year": year, "month": month, "total_pay": total_pay}
+
+    return render(request, "payroll_list.html", ctx)
+
+
+"""
+class PayrollView(View):
+    def get(self, request):
+        pr = Payroll.objects.all()
+        ctx = {"payrol_list": pr}
+        return render(request, "erp_app/payroll_list.html", ctx)
+
+
+class PayrollCreate(View):
     model = Payroll
     form_class = PayrollForm
-    success_url = reverse_lazy("erp_app:load_list")
+    success_url = reverse_lazy("erp_app:payroll_list")
 
     def get_form_kwargs(self):
-        """Return the keyword arguments for instantiating the form."""
         kwargs = super().get_form_kwargs()
         kwargs["driver_id"] = self.request.GET.get("driver")
         return kwargs
@@ -239,8 +269,17 @@ class PayrollCreate(CreateView):
         return redirect(self.success_url)
 
 
-def payroll_list(request):
-    return render(request, "erp_app/payroll_list.html")
+class PayrollUpdate(UpdateView):
+    model = Load
+    fields = "__all__"
+    success_url = reverse_lazy("erp_app:payroll_list")
+
+
+class PayrollDelete(DeleteView):
+    model = Load
+    fields = "__all__"
+    success_url = reverse_lazy("erp_app:payroll_list")
+"""
 
 
 def contact_list(request):

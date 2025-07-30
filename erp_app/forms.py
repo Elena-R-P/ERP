@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Driver, Truck, Trailer, Load, Payroll
+from .models import Driver, Truck, Trailer, Load
 
 
 # Create the form class
@@ -33,12 +33,13 @@ class LoadForm(ModelForm):
         self.fields["driver"].initial = Driver.objects.get(id=driver_id)
 
 
+"""
 class PayrollForm(ModelForm):
-    loads = forms.ModelMultipleChoiceField(
-        queryset=Load.objects.none(),
-        widget=forms.SelectMultiple,
-        label="Select Loads",
-    )
+    # loads = forms.ModelMultipleChoiceField(
+    #    queryset=Load.objects.none(),
+    #    widget=forms.SelectMultiple,
+    #    label="Select Loads",
+    # )
 
     class Meta:
         model = Payroll
@@ -50,3 +51,4 @@ class PayrollForm(ModelForm):
         driver = Driver.objects.get(id=driver_id)
         self.fields["driver"].initial = driver
         self.fields["loads"].queryset = Load.objects.filter(driver=driver)
+"""

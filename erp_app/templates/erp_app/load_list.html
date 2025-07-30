@@ -47,28 +47,29 @@
           <table style="width:100%">
             <thread>
             <tr>
-              <th scope="col">Load#</th>
-              <th scope="col">Pickup Date</th>
-              <th scope="col">Pickup Location</th>
-              <th scope="col">Delivery Date</th>
-              <th scope="col">Delivery Location</th>
-              <th scope="col">Total Cost</th>
-              <th scope="col">Driver Name</th>
-              <th scope="col">Options</th>
+              <th>Load#</th>
+              <th>Pickup Date</th>
+              <th>Pickup Location</th>
+              <th>Delivery Date</th>
+              <th>Delivery Location</th>
+              <th>Total Cost</th>
+              <th>Driver Name</th>
+              <th>Options</th>
             </tr>
             </thread>
             {% for load in load_list %}
               <tbody>
                 <tr>
-                  <td scope="col">{{ load.load_number }}</td>
-                  <td scope="col">{{ load.location_pickup }}</td>
-                  <td scope="col">{{ load.location_delivery }}</td>
-                  <td scope="col">{{ load.pickup_date }}</td>
-                  <td scope="col">{{ load.delivery_date }}</td>
-                  <td scope="col">${{ load.total_cost }}</td>
-                  <td scope="col">{{ load.driver }}</td>
-                  <td scope="col">
-                    <a href={% url 'erp_app:load_update' load.id %}>Update</a> <a href={% url 'erp_app:load_delete' load.id %}>Delete</a>
+                  <td>{{ load.load_number }}</td>
+                  <td>{{ load.location_pickup }}</td>
+                  <td>{{ load.location_delivery }}</td>
+                  <td>{{ load.pickup_date }}</td>
+                  <td>{{ load.delivery_date }}</td>
+                  <td>${{ load.total_cost }}</td>
+                  <td>{{ load.driver }}</td>
+                  <td>
+                    <a href={% url 'erp_app:load_update' load.id %}>Update</a>
+                    <a href={% url 'erp_app:load_delete' load.id %}>Delete</a>
                   </td>
                 </tr>
               </tbody>
