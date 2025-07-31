@@ -4,16 +4,7 @@
   <div id="main_content">
     <div class="main_forms">
       <h2>Add New Driver</h2>
-      <!--      <form action="" method="post">
-        {% csrf_token %}
-        <table>
-          {{ form.as_table }}
-        </table>
-        <input type="submit" value="Submit">
-        <input type="submit" onclick="window.location='{% url 'erp_app:index' %}'" value="Cancel">
-</form>-->
-
-      <form action="" method="post">
+      <form method="post">
         {% csrf_token %}
         <div>
           <div>{{ form.payroll_date.label }}:</div>
@@ -26,14 +17,25 @@
           <div>{{ form.driver.errors }}</div>
         </div>
         <div>
-          <input type="submit"
-                 value="Calculate Payroll"
-                 onclick="calculate_driver_payroll()">
-          <input type="submit"
-                 onclick="window.location='{% url 'erp_app:index' %}'"
-                 value="Cancel">
+          <button type="submit">Calculate payroll</button>
+          <a href="{% url 'erp_app:payroll_list' %}" class="btn">Cancel</a>
         </div>
       </form>
+      {% if form.errors %}
+        <ul class="errorlist">
+          {% for field, errors in form.errors.items %}
+            {% if field != '__all__' %}
+              <li>
+                {{ field }}:
+                <ul>
+                  {% for error in errors %}<li>{{ error }}</li>{% endfor %}
+                </ul>
+              </li>
+            {% endif %}
+          {% endfor %}
+          {% for error in form.non_field_errors %}<li>{{ error }}</li>{% endfor %}
+        </ul>
+      {% endif %}
     </div>
   </div>
 {% endblock content %}

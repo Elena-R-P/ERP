@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, timedelta
 from django.db import models
 from localflavor.us.models import USStateField
 from django.core.validators import MinLengthValidator
@@ -84,31 +84,38 @@ class Load(models.Model):
         return self.load_number
 
 
-"""
 class Payroll(models.Model):
-    payroll_date = models.DateField(auto_now_add=True)
+    payroll_date = models.DateField()
     # total_pay = models.IntegerField() - will be calculated
     discount_percentage = models.DecimalField(
         max_digits=10, decimal_places=2, default=0.0
     )
     driver = models.ForeignKey("Driver", on_delete=models.CASCADE)
-    load = models.ForeignKey(Load, on_delete=models.CASCADE)
     # add related name, connect with
     # If driver deleted do not delete the payrol
     # driver = models.ForeignKey("Driver", on_delete=models.SET_NULL, null=True)
 
-    @property
     # Payroll Calculations
-    def calculate_driver_payrol(self, driver_id, year, month):
-        driver = Driver.objects.get(id=driver_id)
-
+    @property
+    def total_pay(self):
         # Filter loads by driver and month/year
+        today = date.today()
+        start = today - timedelta(days=today.weekday() + 7)
+        end = start + timedelta(5)
+        print(today, start, end)
         driver_loads = Load.objects.filter(
-            driver=driver, delivery_date__year=year, delivery_date__month=month
+            driver=self.driver, delivery_date__gte=start, delivery_date__lte=end
         )
+        total = 0
+        if driver_loads:
+            for load in driver_loads:
+                total += load.total_cost
+            print(total, type(total))
 
-        # Calculate total pay for the specific period
-        total_pay = driver_loads.aggregate(Sum("total_cost"))["total_cost__sum"]
+            # Calculate total pay for the specific period
+            total = driver_loads.aggregate(Sum("total_cost"))["total_cost__sum"]
 
-        ctx = {"driver": driver, "year": year, "month": month, "total_pay": total_pay}
-"""
+            print(total, type(total))
+            total *= 1 - self.discount_percentage
+            print(total, type(total))
+        return total

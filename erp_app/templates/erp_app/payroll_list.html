@@ -48,8 +48,8 @@
               <th>Options</th>
             </tr>
             </thread>
-            <!-- {% for payroll in payroll_list %}
-              <tbody>
+            <tbody>
+              {% for payroll in payroll_list %}
                 <tr>
                   <td>{{ payroll.payroll_date }}</td>
                   <td>{{ payroll.driver }}</td>
@@ -59,8 +59,8 @@
                     <a href={% url 'erp_app:payroll_update' payroll.id %}>Update</a> <a href={% url 'erp_app:payroll_delete' payroll.id %}>Delete</a>
                   </td>
                 </tr>
-              </tbody>
-{% endfor %}-->
+              {% endfor %}
+            </tbody>
           </table>
         </div>
       </div>

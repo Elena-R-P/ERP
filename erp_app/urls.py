@@ -34,13 +34,13 @@ urlpatterns = [
     path("loads/create/", views.LoadCreate.as_view(), name="load_create"),
     path("loads/<int:pk>/update/", views.LoadUpdate.as_view(), name="load_update"),
     path("loads/<int:pk>/delete/", views.LoadDelete.as_view(), name="load_delete"),
-    path("payroll/", views.calculate_driver_payrol, name="payroll_list"),
-    # path("payroll/create/", views.PayrollCreate.as_view(), name="payroll_create"),
-    # path(
-    #    "payroll/<int:pk>/update/", views.PayrollUpdate.as_view(), name="payroll_update"
-    # ),
-    # path(
-    #    "payroll/<int:pk>/delete/", views.PayrollDelete.as_view(), name="payroll_delete"
-    # ),
+    path("payroll/", views.PayrollView.as_view(), name="payroll_list"),
+    path("payroll/create/", views.PayrollCreate.as_view(), name="payroll_create"),
+    path(
+        "payroll/<int:pk>/update/", views.PayrollUpdate.as_view(), name="payroll_update"
+    ),
+    path(
+        "payroll/<int:pk>/delete/", views.PayrollDelete.as_view(), name="payroll_delete"
+    ),
     path("contacts/", views.contact_list, name="contact_list"),
 ]

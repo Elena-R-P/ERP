@@ -9,8 +9,8 @@ from django.template.loader import render_to_string
 from django.shortcuts import get_object_or_404
 from django.db.models import Sum
 
-from .models import Driver, Truck, Trailer, Load
-from .forms import DriverForm, TruckForm, TrailerForm, LoadForm
+from .models import Driver, Payroll, Truck, Trailer, Load
+from .forms import DriverForm, PayrollForm, TruckForm, TrailerForm, LoadForm
 
 # }}}1
 
@@ -226,60 +226,46 @@ class LoadDelete(DeleteView):
     success_url = reverse_lazy("erp_app:load_list")
 
 
-# Payroll Calculations
-def calculate_driver_payrol(request, driver_id, year, month):
-    driver = Driver.objects.get(id=driver_id)
-
-    # Filter loads by driver and month/year
-    driver_loads = Load.objects.filter(
-        driver=driver, delivery_date__year=year, delivery_date__month=month
-    )
-
-    # Calculate total pay for the specific period
-    total_pay = driver_loads.aggregate(Sum("total_cost"))["total_cost__sum"]
-
-    ctx = {"driver": driver, "year": year, "month": month, "total_pay": total_pay}
-
-    return render(request, "payroll_list.html", ctx)
-
-
-"""
 class PayrollView(View):
     def get(self, request):
         pr = Payroll.objects.all()
-        ctx = {"payrol_list": pr}
+        ctx = {"payroll_list": pr}
         return render(request, "erp_app/payroll_list.html", ctx)
 
 
-class PayrollCreate(View):
+class PayrollCreate(CreateView):
     model = Payroll
     form_class = PayrollForm
     success_url = reverse_lazy("erp_app:payroll_list")
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs["driver_id"] = self.request.GET.get("driver")
-        return kwargs
+    # def get_form_kwargs(self):
+    #     kwargs = super().get_form_kwargs()
+    #     kwargs["driver_id"] = self.request.GET.get("driver")
+    #     return kwargs
+    #
 
     def form_valid(self, form):
         self.object = form.save()
-        for load in form.cleaned_data["loads"]:
-            load.payroll = self.object
-            load.save(update_fields=["payroll"])
+        # for load in form.cleaned_data["loads"]:
+        #     load.payroll = self.object
+        #     load.save(update_fields=["payroll"])
         return redirect(self.success_url)
 
 
 class PayrollUpdate(UpdateView):
-    model = Load
-    fields = "__all__"
+    model = Payroll
+    form_class = PayrollForm
     success_url = reverse_lazy("erp_app:payroll_list")
+
+    def form_valid(self, form):
+        self.object = form.save()
+        return redirect(self.success_url)
 
 
 class PayrollDelete(DeleteView):
-    model = Load
+    model = Payroll
     fields = "__all__"
     success_url = reverse_lazy("erp_app:payroll_list")
-"""
 
 
 def contact_list(request):
