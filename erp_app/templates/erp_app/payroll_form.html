@@ -3,7 +3,7 @@
 {% block content %}
   <div id="main_content">
     <div class="main_forms">
-      <h2>Add New Driver</h2>
+      <h2>Payroll Calculations</h2>
       <form method="post">
         {% csrf_token %}
         <div>
@@ -15,6 +15,11 @@
           <div>{{ form.driver.label }}:</div>
           <div>{{ form.driver }}</div>
           <div>{{ form.driver.errors }}</div>
+        </div>
+        <div>
+          <div>{{ form.discount_percentage.label }}:</div>
+          <div>{{ form.discount_percentage }}</div>
+          <div>{{ form.discount_percentage.errors }}</div>
         </div>
         <div>
           <button type="submit">Calculate payroll</button>

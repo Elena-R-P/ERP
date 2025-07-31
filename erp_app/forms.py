@@ -35,15 +35,9 @@ class LoadForm(ModelForm):
 
 
 class PayrollForm(ModelForm):
-    # loads = forms.ModelMultipleChoiceField(
-    #    queryset=Load.objects.none(),
-    #    widget=forms.SelectMultiple,
-    #    label="Select Loads",
-    # )
-
     class Meta:
         model = Payroll
-        exclude = ("discount_percentage",)
+        fields = "__all__"
         widgets = {
             "payroll_date": forms.DateInput(attrs={"type": "date"}),
         }

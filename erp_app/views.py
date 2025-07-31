@@ -15,7 +15,6 @@ from .forms import DriverForm, PayrollForm, TruckForm, TrailerForm, LoadForm
 # }}}1
 
 
-# Create your views here.
 # Render Home page
 def index(request):
     return render(request, "erp_app/index.html")
@@ -94,8 +93,7 @@ class DriverDelete(View):
 # }}} 2
 
 
-# Trucks {{{ 3
-# Render trucks page
+# TruckView {{{3
 class TruckView(View):
     def get(self, request):
         tl = Truck.objects.all()
@@ -163,8 +161,10 @@ class TruckDelete(View):
         return redirect(self.success_url)
 
 
-# Trailers
-# Render trailers page
+# }}}3
+
+
+# TrailerView {{{4
 class TrailerView(View):
     def get(self, request):
         trl = Trailer.objects.all()
@@ -190,11 +190,10 @@ class TrailerDelete(DeleteView):
     success_url = reverse_lazy("erp_app:trailer_list")
 
 
-# }}} 3
+# }}}4
 
 
-# Loads
-# Render loads page
+# LoadView {{{5
 class LoadView(View):
     def get(self, request):
         ld = Load.objects.all()
@@ -226,6 +225,10 @@ class LoadDelete(DeleteView):
     success_url = reverse_lazy("erp_app:load_list")
 
 
+# }}}5
+
+
+# PayrollView {{{6
 class PayrollView(View):
     def get(self, request):
         pr = Payroll.objects.all()
@@ -238,17 +241,8 @@ class PayrollCreate(CreateView):
     form_class = PayrollForm
     success_url = reverse_lazy("erp_app:payroll_list")
 
-    # def get_form_kwargs(self):
-    #     kwargs = super().get_form_kwargs()
-    #     kwargs["driver_id"] = self.request.GET.get("driver")
-    #     return kwargs
-    #
-
     def form_valid(self, form):
         self.object = form.save()
-        # for load in form.cleaned_data["loads"]:
-        #     load.payroll = self.object
-        #     load.save(update_fields=["payroll"])
         return redirect(self.success_url)
 
 
@@ -266,6 +260,9 @@ class PayrollDelete(DeleteView):
     model = Payroll
     fields = "__all__"
     success_url = reverse_lazy("erp_app:payroll_list")
+
+
+# }}}6
 
 
 def contact_list(request):

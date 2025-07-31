@@ -7,8 +7,7 @@
       <form action="" method="POST">
         {% csrf_token %}
         <input type="submit" value="Yes, delete">
-        <input type="submit"
-               onclick="window.location='{% url 'erp_app:load_list' %}'"
+        <input onclick="window.location='{% url 'erp_app:load_list' %}'"
                value="Cancel">
       </form>
 
