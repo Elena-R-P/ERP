@@ -102,7 +102,7 @@ class Payroll(models.Model):
             print(total, type(total))
 
             # Calculate total pay for the specific period
-            total = driver_loads.aggregate(Sum("total_cost"))["total_cost__sum"]
+            # total = driver_loads.aggregate(Sum("total_cost"))["total_cost__sum"]
 
             print(total, type(total))
             total *= 1 - self.discount_percentage
