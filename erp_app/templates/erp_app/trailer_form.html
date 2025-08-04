@@ -1,57 +1,19 @@
 {% extends 'erp_app/base.html' %}
 
 {% block content %}
-  <div id="container-form">
-    <div class="container">
-      <div class="col">
-        <h2 class="text-center">Add New Driver</h2>
-        <form action="" method="post">
-          {% csrf_token %}
-          <table>
-            {{ form.as_table }}
-          </table>
-          <input type="submit" value="Submit">
-          <input onclick="window.location='{% url 'erp_app:trailer_list' %}'"
-                 value="Cancel">
-        </form>
-        <!--
-        <form>
-          <div class="form-group mt-1">
-            <label>First Name</label>
-            <input type="text" formControlName="first_name" placeholder="First Name" class="form-control">
-          </div>
-          <div class="form-group mt-2">
-            <label>Last Name</label>
-            <input type="text" formControlName="last_name" placeholder="Last Name" class="form-control">
-          </div>
-          <div class="form-group mt-2">
-            <label>Date Of Birth</label>
-            <input type="date" formControlName="date_of_birth" placeholder="Date of birth" class="form-control">
-          </div>
-          <div class="form-group mt-2">
-            <label>License Number</label>
-            <input type="text" formControlName="license_number" placeholder="Start" class="form-control">
-          </div>
-          <div class="form-group mt-2">
-            <label>State</label>
-            <input type="text" formControlName="state" placeholder="State" class="form-control">
-          </div>
-          <div class="form-group mt-2">
-            <label>Expiration Date</label>
-            <input type="date" formControlName="expiration_date" placeholder="Expiration Date" class="form-control" </div>
-            <div class="form-group mt-2">
-              <label>Hire Date</label>
-              <input type="date" formControlName="hire_date" placeholder="Hire Date" class="form-control">
-            </div>
-            <div class="form-group mt-2">
-              <label>Termination Date</label>
-              <input type="date" formControlName="termination_date" placeholder="Termination Date" class="form-control">
-            </div>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-              <button type="submit" role="button" class="btn btn-light mt-4">SAVE</button>
-            </div>
-</form> -->
-      </div>
+  <div id="main_content">
+    <div class="main_forms">
+      <h2>Add New Trailer</h2>
+      <form action="" method="post">
+        {% csrf_token %}
+        <table>
+          {{ form.as_table }}
+        </table>
+        <button class="button" type="submit">Submit</button>
+        <button class="button"
+                onclick="window.location='{% url 'erp_app:trailer_list' %}'">Cancel</button>
+      </form>
     </div>
   </div>
+</div>
 {% endblock content %}

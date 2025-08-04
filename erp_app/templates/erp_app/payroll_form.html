@@ -22,8 +22,10 @@
           <div>{{ form.discount_percentage.errors }}</div>
         </div>
         <div>
-          <button type="submit">Calculate payroll</button>
-          <a href="{% url 'erp_app:payroll_list' %}" class="btn">Cancel</a>
+          <button class="button" type="submit">Calculate</button>
+          <button class="button"
+                  onclick="window.location='{% url 'erp_app:payroll_list' %}'">Cancel</button>
+
         </div>
       </form>
       {% if form.errors %}
@@ -42,5 +44,5 @@
         </ul>
       {% endif %}
     </div>
-  </div>
-{% endblock content %}
+
+  {% endblock content %}

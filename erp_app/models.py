@@ -88,7 +88,8 @@ class Payroll(models.Model):
     @property
     def total_pay(self):
         # Filter loads by driver and month/year
-        today = date.today()
+        # today = date.today()
+        today = self.payroll_date
         start = today - timedelta(days=today.weekday() + 7)
         end = start + timedelta(5)
         print(today, start, end)

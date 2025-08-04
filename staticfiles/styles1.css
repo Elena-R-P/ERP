@@ -66,12 +66,18 @@ li.selected{
 }
 
 .button {
-  padding: 10px;
-  background-color:yellow;
   font-family: "Times New Roman", Times, serif;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 14px;
+  margin-top: 10px;
+  color: #4c2a1d;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border: 1px solid #4c2a1d;
+  border-radius: 4px;
 }
+
 
 #main_spreadsheet{
   min-height: 120px;
@@ -102,24 +108,18 @@ td a {
 }
 
 #main_forms {
-  margin-top: 30px;
+  margin-top: 60px;
   margin-left: 50px;
   font-family: "Times New Roman", Times, serif;
   font-size: 20px;
 }
 
-#container-form{
-
-}
-
-
-input[type="submit"] {
+h2 {
+  margin-bottom: 20px;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
   margin-top: 10px;
   color: #4c2a1d;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  border: 1px solid #4c2a1d;
-  border-radius: 4px;
+
 }
 
