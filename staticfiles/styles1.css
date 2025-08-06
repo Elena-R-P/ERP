@@ -58,11 +58,11 @@ li.selected{
 
 .subcontents{
   min-height:30px;
-  width: 150px;
   margin-right:10px;
   display: inline-block;
   justify-content: space-between;
-  padding: 20px;
+  padding-left: 15px;
+  padding-bottom: 15px;
 }
 
 .button {
