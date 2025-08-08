@@ -6,26 +6,26 @@
       <h2>Payroll Calculations</h2>
       <form method="post">
         {% csrf_token %}
-        <div>
-          <div>{{ form.payroll_date.label }}:</div>
+        <div class="form">
+          <div class="form_label">{{ form.payroll_date.label }}:</div>
           <div>{{ form.payroll_date }}</div>
           <div>{{ form.payroll_date.errors }}</div>
         </div>
-        <div>
-          <div>{{ form.driver.label }}:</div>
+        <div class="form">
+          <div class="form_label">{{ form.driver.label }}:</div>
           <div>{{ form.driver }}</div>
           <div>{{ form.driver.errors }}</div>
         </div>
-        <div>
-          <div>{{ form.discount_percentage.label }}:</div>
+        <div class="form">
+          <div class="form_label">{{ form.discount_percentage.label }}:</div>
           <div>{{ form.discount_percentage }}</div>
           <div>{{ form.discount_percentage.errors }}</div>
         </div>
         <div>
-          <button class="button" type="submit">Calculate</button>
-          <button class="button"
-                  onclick="window.location='{% url 'erp_app:payroll_list' %}'">Cancel</button>
-
+          <input type="submit" value="Calculate">
+          <input type="button"
+                 onclick="window.location='{% url 'erp_app:payroll_list' %}'"
+                 value="Cancel">
         </div>
       </form>
       {% if form.errors %}

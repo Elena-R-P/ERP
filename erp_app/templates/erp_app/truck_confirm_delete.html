@@ -1,14 +1,18 @@
+{% extends 'erp_app/base.html' %}
 {% block content %}
-  <h1>
-    Delete Truck
-    <h1>
-      <p>Are you sure you want to delete the truck: {{ truck }}</p>
 
-      <form action="" method="POST">
-        {% csrf_token %}
-        <input type="submit" value="Yes, delete">
-        <input onclick="window.location='{% url 'erp_app:truck_list' %}'"
-               value="Cancel">
-      </form>
-
+  <div id="main_content">
+    <div class="main_forms">
+      <h1>
+        Are you sure you want to delete the truck: {{ truck }}
+        <h1>
+          <form action="" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="Yes, delete">
+            <input type="button"
+                   onclick="window.location='{% url 'erp_app:truck_list' %}'"
+                   value="Cancel">
+          </form>
+        </div>
+      </div>
     {% endblock content %}

@@ -9,64 +9,11 @@
         <table>
           {{ form.as_table }}
         </table>
-        <button class="button" type="submit">Submit</button>
-        <button class="button"
-                onclick="window.location='{% url 'erp_app:driver_list' %}'">Cancel</button>
-
+        <input type="submit" value="Submit">
+        <input type="button"
+               onclick="window.location='{% url 'erp_app:driver_list' %}'"
+               value="Cancel">
       </form>
-      {% comment %}
-      <form action="" method="post">
-        {% csrf_token %}
-        <div>
-          <div>{{ form.first_name.label }}:</div>
-          <div>{{ form.first_name }}</div>
-          <div>{{ form.first_name.errors }}</div>
-        </div>
-        <div>
-          <div>{{ form.last_name.label }}:</div>
-          <div>{{ form.last_name }}</div>
-          <div>{{ form.last_name.errors }}</div>
-        </div>
-        <div>
-          <div>{{ form.date_of_birth.label }}</div>
-          <div>{{ form.date_of_birth }}</div>
-          <div>{{ form.date_of_birth.errors }}</div>
-        </div>
-        <div>
-          <div>{{ form.license_number.label }}</div>
-          <div>{{ form.license_number }}</div>
-          <div>{{ form.license_number.errors }}</div>
-        </div>
-        <div>
-          <div>{{ form.license_state.label }}</div>
-          <div>{{ form.license_state }}</div>
-          <div>{{ form.license_state.errors }}</div>
-        </div>
-        <div>
-          <div>{{ form.license_exp_date.label }}</div>
-          <div>{{ form.license_exp_date }}</div>
-          <div>{{ form.license_exp_date.errors }}</div>
-        </div>
-        <div>
-          <div>{{ form.driver_start_date.label }}</div>
-          <div>{{ form.driver_start_date }}</div>
-          <div>{{ form.driver_start_date.errors }}</div>
-        </div>
-        <div>
-          <div>{{ form.driver_end_date.label }}</div>
-          <div>{{ form.driver_end_date }}</div>
-          <div>{{ form.driver_end_date.errors }}</div>
-        </div>
-        <div>
-          <div>{{ form.driver_active.label }}: {{ form.driver_active }}</div>
-          <div>{{ form.driver_active.errors }}</div>
-        </div>
-        <div>
-          <button class="button" type="submit">Submit</button>
-          <button class="button" onclick="window.location='{% url 'erp_app:index' %}'">Cancel</button>
-        </div>
-      </form>
-      {% endcomment %}
     </div>
   </div>
 {% endblock content %}
