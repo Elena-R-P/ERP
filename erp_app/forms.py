@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import ModelForm, widgets
+from django.forms import ModelForm
 from .models import Driver, Payroll, Truck, Trailer, Load
 
 

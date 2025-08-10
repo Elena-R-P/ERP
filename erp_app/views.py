@@ -12,15 +12,13 @@ from django.db.models import Sum
 from .models import Driver, Payroll, Truck, Trailer, Load
 from .forms import DriverForm, PayrollForm, TruckForm, TrailerForm, LoadForm
 
-# }}}1
-
 
 # Render Home page
 def index(request):
     return render(request, "erp_app/index.html")
 
 
-# DriverView {{{2
+# DriverView {{{1
 class DriverView(View):
     """Render drivers page"""
 
@@ -90,10 +88,7 @@ class DriverDelete(View):
         return redirect(self.success_url)
 
 
-# }}} 2
-
-
-# TruckView {{{3
+# TruckView {{{1
 class TruckView(View):
     def get(self, request):
         tl = Truck.objects.all()
@@ -161,10 +156,7 @@ class TruckDelete(View):
         return redirect(self.success_url)
 
 
-# }}}3
-
-
-# TrailerView {{{4
+# TrailerView {{{1
 class TrailerView(View):
     def get(self, request):
         trl = Trailer.objects.all()
@@ -174,13 +166,13 @@ class TrailerView(View):
 
 class TrailerCreate(CreateView):
     model = Trailer
-    fields = "__all__"
+    form_class = TrailerForm
     success_url = reverse_lazy("erp_app:trailer_list")
 
 
 class TrailerUpdate(UpdateView):
     model = Trailer
-    fields = "__all__"
+    form_class = TrailerForm
     success_url = reverse_lazy("erp_app:trailer_list")
 
 
@@ -190,10 +182,7 @@ class TrailerDelete(DeleteView):
     success_url = reverse_lazy("erp_app:trailer_list")
 
 
-# }}}4
-
-
-# LoadView {{{5
+# LoadView {{{1
 class LoadView(View):
     def get(self, request):
         ld = Load.objects.all()
@@ -225,10 +214,7 @@ class LoadDelete(DeleteView):
     success_url = reverse_lazy("erp_app:load_list")
 
 
-# }}}5
-
-
-# PayrollView {{{6
+# PayrollView {{{1
 class PayrollView(View):
     def get(self, request):
         pr = Payroll.objects.all()
@@ -262,7 +248,7 @@ class PayrollDelete(DeleteView):
     success_url = reverse_lazy("erp_app:payroll_list")
 
 
-# }}}6
+# }}}1
 
 
 def contact_list(request):
