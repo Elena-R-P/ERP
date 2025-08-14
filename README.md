@@ -22,7 +22,8 @@ For the Databases category, I expanded the complexity of a project and used MySQ
 When improving the project I learned about get_form_kwargs(self) method which is a standard method in Django’s class-based views responsible for returning a dictionary of keyword arguments (kwargs) that will be used to instantiate the form class associated with the view (Django, 2025). I used this method in LoadCreate() class in views.py (Pic 1), so I can connect the driver_id with the load on the front-end (Pic 2) and use this driver_id in “New Load” form (Pic 3 and Pic 4). Forms were created using Django forms and method {{ form.as_table }} to render a form in the template.
 
 ## Final project overview
-Modifications and improvements made during the course CS-499.
+Modifications and improvements made during the course CS-499.</br>
+<img src="cs499/home_screen.png" width="570" height="550" /><br/>
 **The link to the [Project Overview](https://youtu.be/Z6razfMIG1c)**
 
 
