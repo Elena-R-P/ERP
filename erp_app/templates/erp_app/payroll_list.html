@@ -54,7 +54,7 @@
                   <td>{{ payroll.payroll_date }}</td>
                   <td>{{ payroll.driver }}</td>
                   <td>{{ payroll.discount_percentage }}</td>
-                  <td>{{ payroll.total_pay }}</td>
+                  <td>${{ payroll.total_pay }}</td>
                   <td>
                     <a href={% url 'erp_app:payroll_update' payroll.id %}>Update</a> <a href={% url 'erp_app:payroll_delete' payroll.id %}>Delete</a>
                   </td>
