@@ -5,7 +5,6 @@ This repository contains my ePortfolio and a final project for CS-499 Computer S
 **[Code Review](https://youtu.be/HQdmOov7jRk)**</br>
 This code review provides a detailed walkthrough analysis that focuses on features, capabilities, target areas for improvement, and an enhancement plan that addresses the issues identified during the code review.
 
-
 ## Software Design and Engineering Enhancement
 **[Software Design and Engineering Narrative](https://github.com/Elena-R-P/ERP/blob/master/cs499/m3_2_software_design.pdf)**
 </br>
@@ -24,11 +23,7 @@ For the Databases category, I demonstrated the ability to use innovative techniq
 ERP Trucking application provides a platform for managing various aspects of logistics, including equipment tracking, driver information storage, route planning, and driver payroll. </br>
 <kbd><img src="cs499/home_screen.png" width="570" height="550"/></kbd>
 
-
-
-
-
-### Self-Reflection
+### ePortfolio and Professional Self-Assessment
 + [What Makes a Productive Code Review?](https://github.com/Elena-R-P/ERP/blob/master/cs499/m2_1_paper.pdf)
 + [Marketing With ePortfolio](https://github.com/Elena-R-P/ERP/blob/master/cs499/m3_1_paper.pdf)
 + [Emerging Technology](https://github.com/Elena-R-P/ERP/blob/master/cs499/m6_1_paper.pdf) 
